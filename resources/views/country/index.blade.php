@@ -35,7 +35,7 @@
 			         <tr>
 			         <td>{{$inc}}</td>
 			         <td>{{$countries->name}}</td>
-			         <td><a href="{{route('country.edit',$countries->id)}}" class="btn btn-warning">Update</a></td>
+			         <td><a href="{{route('country.edit',$countries->id)}}" class="glyphicon glyphicon-pencil"></a></td>
 			         <td>
                      {!! Form::open(['method' => 'DELETE', 'route'=>['country.destroy', $countries->id],'id'=>'myForm']) !!}
                      {!! Form::submit('Delete', ['class' => 'btn btn-danger','id'=>'delete']) !!}

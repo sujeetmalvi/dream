@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Country;
+//use Session;
+use Flash;
+use Request as Re;
 
 class CountryController extends Controller
 {
@@ -15,7 +19,8 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
+        $country=Country::all();
+        return view('country.index',compact('country'));
     }
 
     /**
@@ -25,7 +30,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+         return view('country.create');
     }
 
     /**
@@ -36,7 +41,18 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:_country|max:32',
+           
+        ]);
+
+        $input = $request->all();
+
+        Country::create($input);
+
+        Flash::overlay('Country has been Added Successfully');
+
+        return redirect()->back();   
     }
 
     /**
@@ -58,7 +74,8 @@ class CountryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $classes=Country::find($id);
+        return view('country.edit',compact('classes'));
     }
 
     /**
@@ -70,7 +87,12 @@ class CountryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $classUpdate=Re::all();
+       $book=Country::find($id);
+       $book->update($classUpdate);
+
+       Flash::overlay('Country has been Updated Successfully');
+       return redirect('country');
     }
 
     /**

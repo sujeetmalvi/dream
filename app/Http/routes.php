@@ -18,3 +18,4 @@ Route::get('/',['middleware'=>'auth', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+Route::resource('country','CountryController');

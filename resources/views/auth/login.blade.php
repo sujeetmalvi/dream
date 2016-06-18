@@ -13,6 +13,7 @@
     <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="{{ asset("/bower_components/AdminLTE/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset("css/login.css")}}" rel="stylesheet" type="text/css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
@@ -24,6 +25,7 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+   <link href="{{asset("css/login.css")}}" rel="stylesheet" type="text/css">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -31,7 +33,7 @@
     <a href="{{url('/')}}">Dream</a>
   </div>
   <!-- /.login-logo -->
-  <div class="login-box-body">
+  <div class="login-box-body back1">
     <p class="login-box-msg">Sign in to start your session</p>
 
    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
@@ -41,7 +43,7 @@
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                <input id="email" type="email" class="form-control form1" name="email" value="{{ old('email') }}">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">

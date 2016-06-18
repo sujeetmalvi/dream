@@ -35,7 +35,7 @@
                 <a href="#"><span>Configuration</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="{{url('country')}}">Country </a></li>
-                    <li><a href="#">State</a></li>
+                    <li><a href="{{url('state')}}">State</a></li>
                     <li><a href="#">District</a></li>
                     <li><a href="#">Payment Mode</a></li>
                     <li><a href="#">Student Catagory</a></li>

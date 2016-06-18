@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Country;
+use App\State;
 use Session;
 use Flash;
 use Request as Re;
-
-class CountryController extends Controller
+use DB;
+class StateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +19,11 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $country=Country::all();
-        return view('country.index',compact('country'));
+         $State=DB::table('_state')
+            ->join('_country', '_country.id', '=', '_state.country_id')
+            ->select('_state.*', '_country.name as cname')
+            ->get();
+        return view('State.index',compact('State'));
     }
 
     /**
@@ -30,7 +33,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-         return view('country.create');
+        return view('State.create');
     }
 
     /**
@@ -41,16 +44,16 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|unique:_country|max:32',
+         $this->validate($request, [
+            'name' => 'required|unique:_State|max:32',
            
         ]);
 
         $input = $request->all();
 
-        Country::create($input);
+        State::create($input);
 
-        Flash::overlay('Country has been Added Successfully');
+        Flash::overlay('State has been Added Successfully');
 
         return redirect()->back();   
     }
@@ -74,8 +77,8 @@ class CountryController extends Controller
      */
     public function edit($id)
     {
-        $classes=Country::find($id);
-        return view('country.edit',compact('classes'));
+        $classes=State::find($id);
+        return view('State.edit',compact('classes'));
     }
 
     /**
@@ -87,12 +90,12 @@ class CountryController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $classUpdate=Re::all();
-       $book=Country::find($id);
+        $classUpdate=Re::all();
+       $book=State::find($id);
        $book->update($classUpdate);
 
-       Flash::overlay('Country has been Updated Successfully');
-       return redirect('country');
+       Flash::overlay('State has been Updated Successfully');
+       return redirect('State');
     }
 
     /**
